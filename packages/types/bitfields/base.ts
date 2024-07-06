@@ -5,7 +5,7 @@
  * 
  * @see https://en.wikipedia.org/wiki/Bit_field for a better explanation
  */
-export default class Bitfield<T extends number> {
+export class Bitfield<T extends number> {
     #value: number = 0;
     get value() { return this.#value }
     set value(value) {

@@ -1,4 +1,4 @@
-import Bitfield from "./base.ts";
+import { Bitfield } from "./base.ts";
 
 /**
  * Documentation Provided by Discord, licensed under the Creative Commons Attribution-ShareAlike 4.0 International Public License.

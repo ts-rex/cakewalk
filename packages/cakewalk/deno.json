@@ -2,7 +2,6 @@
   "name": "@ts-rex/cakewalk",
   "version": "0.0.0",
   "exports": {
-    ".": "./mod.ts",
-    "./api-types": "./api-types.ts"
+    ".": "./mod.ts"
   }
 }
