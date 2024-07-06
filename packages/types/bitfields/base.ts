@@ -7,8 +7,8 @@
  */
 export class Bitfield<T extends number> {
     #value: number = 0;
-    get value() { return this.#value }
-    set value(value) {
+    get value(): number { return this.#value }
+    set value(value: number) {
         // TODO: do some checks here
         this.#value = value
     }
