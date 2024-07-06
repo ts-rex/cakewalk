@@ -1,0 +1,8 @@
+{
+    "name": "@cakewalk/types",
+    "version": "0.0.0",
+    "exports": {
+        ".": "./mod.ts",
+        "./bitfields": "./bitfields/mod.ts"
+    }
+}
