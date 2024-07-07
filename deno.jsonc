@@ -1,0 +1,10 @@
+{
+    "workspace": ["@cakewalk/cakewalk", "@cakewalk/types", "@cakewalk/rest"],
+    "fmt": {
+        "useTabs": true,
+        "indentWidth": 4,
+        "semiColons": false,
+        "proseWrap": "always",
+        "singleQuote": true
+    }
+}

@@ -1,7 +1,8 @@
-name: Publish
+name: Publish (Dry)
 'on':
-    release:
-        types: [published]
+  push:
+    branches:
+      - main
 
 jobs:
   publish:
@@ -18,11 +19,9 @@ jobs:
         uses: denoland/setup-deno@v1
         with:
           deno-version: canary
+
       - name: Format
         run: deno fmt --check
 
-      - name: Test
-        run: deno task test
-
-      - name: Publish to JSR
-        run: deno publish
+      - name: Publish to JSR (dry)
+        run: deno publish --dry-run
