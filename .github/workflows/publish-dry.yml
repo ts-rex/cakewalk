@@ -39,6 +39,7 @@ jobs:
           git commit -am "Format code"
           git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/ts-rex/cakewalk.git
           git config --global user.name "Deno fmt"
+          git config --global user.email "you@example.com"
           git push
         if: ${{ steps.format.outputs.exit-code }} != 0
   
