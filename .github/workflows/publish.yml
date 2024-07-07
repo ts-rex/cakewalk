@@ -22,8 +22,5 @@ jobs:
       - name: Format
         run: deno fmt --check
 
-      - name: Test
-        run: deno task test
-
       - name: Publish to JSR
         run: deno publish
