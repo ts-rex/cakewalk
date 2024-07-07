@@ -23,11 +23,13 @@ jobs:
       - name: Format
         id: format
         run: |
-          trap 'echo "exit-code=$?" >> "$GITHUB_OUTPUT"' EXIT
           deno fmt --check
+          echo "::set-output name=exit-code::$?"
         continue-on-error: true
 
       - name: Commit formatted code
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           deno fmt
           git config --local user.name "deno fmt"
