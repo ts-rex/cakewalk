@@ -35,12 +35,18 @@ jobs:
 
       - name: Commit
         run: |
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /user
           git config --global user.name 'deno fmt' 
           git config --global user.email 'github-actions@users.noreply.github.com'
           git add .
           git commit -am "Format code"
           git remote set-url origin https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
           git push
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ steps.format.outputs.exit-code }} != 0
   
       - name: Publish to JSR (dry)
