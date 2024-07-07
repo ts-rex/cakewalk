@@ -21,7 +21,18 @@ jobs:
           deno-version: canary
 
       - name: Format
-        run: deno fmt --check
-
+        id: format
+        run: |
+          trap 'echo "exit-code=$?" >> "$GITHUB_OUTPUT"' EXIT
+          deno fmt --check
+      - name: Commit formatted code
+        run: |
+          deno fmt
+          git config --local user.name "deno fmt"
+          git add .
+          git commit -m "Formatted your code for you!"
+          git push
+        if: ${{ steps.format.outputs.exit-code }} != 0
       - name: Publish to JSR (dry)
         run: deno publish --dry-run
+        if: ${{ steps.format.outputs.exit-code }} == 0
