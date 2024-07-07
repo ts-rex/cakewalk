@@ -20,24 +20,28 @@ jobs:
         with:
           deno-version: canary
 
-      - name: Format
+      - name: Format dry
         id: format
         run: |
           deno fmt --check
           echo "::set-output name=exit-code::$?"
         continue-on-error: true
 
-      - name: Commit formatted code
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          deno fmt
-          git config user.name "deno fmt"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Formatted your code for you!"
-          git push
+      - name: Format (if dry format failed)
+        run: deno fmt
         if: ${{ steps.format.outputs.exit-code }} != 0
+
+      - name: Commit
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          add_timestamp: true
+          commit_prefix: "[AUTO]"
+          commit_message: "Formatted your code!"
+          force: false
+          target_branch: main
+        if: ${{ steps.format.outputs.exit-code }} != 0
+  
       - name: Publish to JSR (dry)
         run: deno publish --dry-run
         if: ${{ steps.format.outputs.exit-code }} == 0
