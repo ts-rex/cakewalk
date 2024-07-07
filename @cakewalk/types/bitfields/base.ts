@@ -18,7 +18,7 @@ export class Bitfield<T extends number> {
      * @param bit The bit to enable (in this case, a discord flag)
      * @param state enable or disable bit
      */
-    set(bit: T, state = true) {
+    set(bit: T, state = true): Bitfield<T> {
         if(state) {
             this.#value |= 1 << bit
         } else {
