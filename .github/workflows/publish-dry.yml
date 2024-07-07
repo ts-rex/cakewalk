@@ -39,6 +39,7 @@ jobs:
           git config --global user.email 'github-actions@users.noreply.github.com'
           git add .
           git commit -am "Format code"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           git push
         if: ${{ steps.format.outputs.exit-code }} != 0
   
