@@ -14,6 +14,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Deno
         uses: denoland/setup-deno@v1
@@ -36,9 +38,8 @@ jobs:
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
           add_timestamp: true
-          commit_prefix: "[AUTO]"
-          commit_message: "Formatted your code!"
           force: false
+          amend: true
           target_branch: main
         if: ${{ steps.format.outputs.exit-code }} != 0
   
