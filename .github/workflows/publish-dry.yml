@@ -25,6 +25,8 @@ jobs:
         run: |
           trap 'echo "exit-code=$?" >> "$GITHUB_OUTPUT"' EXIT
           deno fmt --check
+        continue-on-error: true
+
       - name: Commit formatted code
         run: |
           deno fmt
