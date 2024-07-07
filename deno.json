@@ -1,0 +1,3 @@
+{
+    "workspaces": ["@cakewalk/cakewalk", "@cakewalk/types", "@cakewalk/rest"]
+}
