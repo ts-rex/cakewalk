@@ -24,6 +24,7 @@ export class Bitfield<T extends number> {
         } else {
             this.#value &= ~(1 << bit)
         }
+        return this;
     }
 
     /**
