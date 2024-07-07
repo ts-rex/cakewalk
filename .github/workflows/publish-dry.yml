@@ -34,13 +34,11 @@ jobs:
         if: ${{ steps.format.outputs.exit-code }} != 0
 
       - name: Commit
-        uses: devops-infra/action-commit-push@master
-        with:
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
-          add_timestamp: true
-          force: false
-          amend: true
-          target_branch: main
+        run: |
+          git add .
+          git commit -am "Format code"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git push
         if: ${{ steps.format.outputs.exit-code }} != 0
   
       - name: Publish to JSR (dry)
