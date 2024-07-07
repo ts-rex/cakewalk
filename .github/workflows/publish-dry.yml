@@ -35,10 +35,10 @@ jobs:
 
       - name: Commit
         run: |
-          git add .
-          git commit -am "Format code"
           git config --global user.name 'deno fmt' 
           git config --global user.email 'github-actions@users.noreply.github.com'
+          git add .
+          git commit -am "Format code"
           git push
         if: ${{ steps.format.outputs.exit-code }} != 0
   
